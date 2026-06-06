@@ -1,0 +1,7 @@
+*.png
+diff-*.html
+.claude/
+.playwright-mcp/
+before-*.png
+after-*.png
+fix-*.png

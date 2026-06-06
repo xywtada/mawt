@@ -4,11 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mawt — Дизайн и разработка под ключ</title>
+  <meta name="description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽. Пишите — отвечу в течение часа.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mawt — Дизайн и разработка под ключ">
+  <meta property="og:description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mawt — Дизайн и разработка под ключ">
+  <meta name="twitter:description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111111'/><text x='16' y='23' font-family='Arial Black,sans-serif' font-weight='900' font-size='19' fill='%23c4a882' text-anchor='middle'>M</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg:       #111111;
@@ -16,12 +23,12 @@
       --surface2: #212121;
       --border:   #2a2a2a;
       --text:     #efefef;
-      --muted:    #787878;
+      --muted:    #898989;
       --accent:   #c4a882;
       --accent-d: #9e8463;
       --radius:   16px;
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -33,21 +40,6 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* ── Custom Cursor ── */
-    .cursor {
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-      width: 14px; height: 14px;
-      border: 1.5px solid var(--accent);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width .25s, height .25s, background .25s, opacity .2s;
-      opacity: 0;
-    }
-    .cursor.visible { opacity: 1; }
-    .cursor.hover { width: 36px; height: 36px; background: rgba(196,168,130,.1); }
-    @media (hover: none) { .cursor { display: none; } }
-
-    /* ── Noise overlay ── */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0;
@@ -56,19 +48,12 @@
       opacity: .5;
     }
 
-    /* ── Layout ── */
     .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-
-    /* ── Typography ── */
     .syne { font-family: 'Syne', sans-serif; font-weight: 800; }
-
-    /* ── Scroll-reveal ── */
     .reveal { opacity: 0; transform: translateY(32px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ══════════════════════════════
-       NAV
-    ══════════════════════════════ */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 20px 0;
@@ -89,47 +74,65 @@
     .nav-links a:hover { color: var(--text); }
     .nav-cta {
       font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
-      padding: 10px 22px; border: 1px solid var(--border);
+      padding: 11px 22px; border: 1px solid var(--border);
       border-radius: 40px; color: var(--muted);
       transition: border-color .2s, color .2s;
     }
     .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
-    @media (max-width: 768px) { .nav-links { display: none; } }
+    @media (max-width: 768px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 11px; letter-spacing: .01em; white-space: nowrap; }
+      .nav-logo { font-size: 18px; }
+      .nav-cta { font-size: 11px; padding: 9px 14px; }
+    }
 
-    /* ══════════════════════════════
-       HERO
-    ══════════════════════════════ */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column; justify-content: flex-end;
-      padding-bottom: 80px;
-      padding-top: 120px;
+      padding-bottom: 80px; padding-top: 120px;
       border-bottom: 1px solid var(--border);
-      overflow: hidden;
+      overflow: hidden; position: relative;
+    }
+    .hero-deco {
+      position: absolute; pointer-events: none; border-radius: 50%;
+    }
+    .hero-deco-1 {
+      top: -20%; right: -8%;
+      width: 750px; height: 750px;
+      background: radial-gradient(circle, rgba(196,168,130,.06) 0%, transparent 65%);
+    }
+    .hero-deco-2 {
+      bottom: -10%; left: -8%;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(196,168,130,.03) 0%, transparent 65%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 40%, black 20%, transparent 75%);
+      mask-image: radial-gradient(ellipse 85% 70% at 50% 40%, black 20%, transparent 75%);
     }
     .hero-eyebrow {
-      font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+      font-size: 14px; letter-spacing: .16em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 28px;
       display: flex; align-items: center; gap: 12px;
     }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 32px; height: 1px; background: var(--accent);
-    }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
     .hero-h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
       font-size: clamp(72px, 13vw, 160px);
-      line-height: .92; letter-spacing: -.04em;
-      margin-bottom: 40px;
+      line-height: .92; letter-spacing: -.04em; margin-bottom: 40px;
     }
     .hero-h1 .accent-line { color: var(--accent); }
-    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-    .hero-desc { max-width: 400px; }
+    .hero-bottom { display: flex; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+    .hero-desc { max-width: 420px; }
     .hero-desc p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
-    .tag {
-      font-size: 12px; letter-spacing: .06em; color: var(--muted);
-      padding: 5px 14px; border: 1px solid var(--border); border-radius: 40px;
-    }
+    .tag { font-size: 12px; letter-spacing: .06em; color: var(--muted); padding: 5px 14px; border: 1px solid var(--border); border-radius: 40px; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
@@ -150,21 +153,11 @@
       transition: border-color .2s, color .2s, transform .2s;
     }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .hero-stat { text-align: right; }
-    .hero-stat-num {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(40px, 6vw, 72px); color: var(--accent);
-      line-height: 1; letter-spacing: -.03em;
-    }
-    .hero-stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
-    .hero-stats { display: flex; gap: 48px; }
 
-    /* ══════════════════════════════
-       SECTION COMMONS
-    ══════════════════════════════ */
+    /* ── SECTION COMMONS ── */
     section { padding: 100px 0; border-bottom: 1px solid var(--border); }
     .section-label {
-      font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 16px;
       display: flex; align-items: center; gap: 10px;
     }
@@ -172,28 +165,18 @@
     .section-title {
       font-family: 'Syne', sans-serif; font-weight: 800;
       font-size: clamp(32px, 5vw, 56px);
-      letter-spacing: -.03em; line-height: 1.05;
-      margin-bottom: 16px;
+      letter-spacing: -.03em; line-height: 1.05; margin-bottom: 16px;
     }
     .section-sub { color: var(--muted); font-size: 16px; max-width: 480px; line-height: 1.7; }
 
-    /* ══════════════════════════════
-       SERVICES — BENTO
-    ══════════════════════════════ */
+    /* ── SERVICES BENTO ── */
     .services-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 32px; flex-wrap: wrap; }
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 12px;
-    }
+    .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .bento-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
+      border-radius: var(--radius); padding: 32px;
       transition: border-color .3s, transform .3s;
-      cursor: default;
-      position: relative; overflow: hidden;
+      cursor: default; position: relative; overflow: hidden;
     }
     .bento-card::after {
       content: ''; position: absolute; inset: 0;
@@ -202,12 +185,13 @@
     }
     .bento-card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .bento-card:hover::after { opacity: 1; }
-    .bento-wide  { grid-column: span 2; }
-    .bento-tall  { grid-row: span 2; }
+    .bento-wide { grid-column: span 2; }
+    .bento-tall { grid-row: span 2; }
     .card-icon { width: 44px; height: 44px; margin-bottom: 24px; color: var(--accent); }
     .card-title {
       font-family: 'Syne', sans-serif; font-weight: 800;
       font-size: 20px; letter-spacing: -.02em; margin-bottom: 10px;
+      line-height: 1.35; overflow: visible;
     }
     .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
     .card-price { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .03em; }
@@ -221,171 +205,90 @@
       .bento { grid-template-columns: repeat(2, 1fr); }
       .bento-wide { grid-column: span 2; }
       .bento-tall { grid-row: span 1; }
+      .bento-card:nth-child(4), .bento-card:nth-child(6) { grid-column: span 2; }
     }
     @media (max-width: 520px) {
       .bento { grid-template-columns: 1fr; }
-      .bento-wide { grid-column: span 1; }
+      .bento-wide,
+      .bento-card:nth-child(4),
+      .bento-card:nth-child(6) { grid-column: span 1; }
     }
 
-    /* ══════════════════════════════
-       CASES
-    ══════════════════════════════ */
+    /* ── CASES ── */
     .cases-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 32px; flex-wrap: wrap; }
-    .cases-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-    }
+    .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .case-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden;
-      transition: border-color .3s, transform .3s;
-      cursor: pointer;
+      transition: border-color .3s, transform .3s; cursor: pointer;
     }
     .case-card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .case-card:first-child { grid-column: span 2; }
-    .case-mockup {
-      height: 220px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .case-card:first-child .case-mockup { height: 280px; }
-    /* Mockup визуалы через CSS */
-    .mockup-auto {
-      background: linear-gradient(135deg, #1e2028 0%, #16181f 100%);
-      width: 100%; height: 100%; position: relative;
-    }
-    .mockup-auto::before {
-      content: '';
-      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-      width: 200px; height: 120px;
-      background: linear-gradient(135deg, #2a2d38 0%, #1e2130 100%);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.5);
-    }
-    .mockup-auto::after {
-      content: 'OZON';
-      position: absolute; left: 50%; top: 50%; transform: translate(calc(-50% + 0px), calc(-50% - 0px));
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px;
-      letter-spacing: .1em; color: #005bff; opacity: .6;
-    }
-    .mockup-bar {
-      background: linear-gradient(135deg, #1a1a22 0%, #131318 100%);
-      width: 100%; height: 100%; position: relative;
-    }
-    .mockup-bar::before {
-      content: '';
-      position: absolute; inset: 20px; border-radius: 10px;
-      background: linear-gradient(160deg, #222228 0%, #18181e 100%);
-      box-shadow: 0 4px 20px rgba(0,0,0,.4);
-    }
-    .mockup-bar::after {
-      content: 'BARBER';
-      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px;
-      letter-spacing: .25em; color: rgba(196,168,130,.4);
-    }
-    .mockup-bot {
-      background: linear-gradient(135deg, #14181a 0%, #0d1114 100%);
-      width: 100%; height: 100%; position: relative; display: flex;
-      flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-    }
-    .bot-bubble {
-      background: #1e2124; border-radius: 12px 12px 12px 4px;
-      padding: 8px 14px; font-size: 12px; color: var(--muted); width: 140px;
-    }
-    .bot-bubble.right { border-radius: 12px 12px 4px 12px; background: #1a3a2a; color: #5aba85; margin-left: 20px; }
+    .case-mockup { position: relative; overflow: hidden; aspect-ratio: 16 / 9; }
+    .case-mockup img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
     .case-info { padding: 24px 28px; }
-    .case-tag {
-      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 10px;
-    }
-    .case-title {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 18px; letter-spacing: -.02em; margin-bottom: 8px;
-    }
+    .case-tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .case-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -.02em; margin-bottom: 8px; }
     .case-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
     @media (max-width: 860px) {
       .cases-grid { grid-template-columns: 1fr; }
       .case-card:first-child { grid-column: span 1; }
     }
 
-    /* ══════════════════════════════
-       WHY / ADVANTAGES
-    ══════════════════════════════ */
-    .why-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-      margin-top: 56px;
-    }
+    /* ── WHY ── */
+    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 56px; }
     .why-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px 28px;
-      transition: border-color .3s;
+      border-radius: var(--radius); padding: 32px 28px; transition: border-color .3s;
     }
     .why-card:hover { border-color: var(--accent); }
-    .why-icon {
-      font-size: 28px; margin-bottom: 20px; display: block;
-    }
-    .why-title {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 17px; letter-spacing: -.01em; margin-bottom: 10px;
-    }
+    .why-icon { font-size: 28px; margin-bottom: 20px; display: block; }
+    .why-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -.01em; margin-bottom: 10px; }
     .why-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
     @media (max-width: 860px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .why-grid { grid-template-columns: 1fr; } }
 
-    /* ══════════════════════════════
-       CTA SECTION
-    ══════════════════════════════ */
-    .cta-section {
-      padding: 120px 0;
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
+    /* ── CTA ── */
+    .cta-section { padding: 120px 0; border-bottom: 1px solid var(--border); text-align: center; }
     .cta-section .section-label { justify-content: center; }
     .cta-section .section-label::before { display: none; }
     .cta-h {
       font-family: 'Syne', sans-serif; font-weight: 800;
       font-size: clamp(36px, 7vw, 80px);
-      letter-spacing: -.04em; line-height: .95;
-      margin: 16px 0 48px;
+      letter-spacing: -.04em; line-height: .95; margin: 16px 0 48px;
     }
     .cta-h span { color: var(--accent); }
     .cta-sub { color: var(--muted); font-size: 16px; max-width: 440px; margin: 0 auto 48px; line-height: 1.7; }
 
-    /* ══════════════════════════════
-       FOOTER
-    ══════════════════════════════ */
+    /* ── FOOTER ── */
     footer { padding: 40px 0; }
-    footer .container {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; flex-wrap: wrap;
-    }
+    footer .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
     .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: .05em; }
     .footer-logo span { color: var(--accent); }
     .footer-copy { font-size: 13px; color: var(--muted); }
     .footer-links { display: flex; gap: 20px; }
-    .footer-links a {
-      font-size: 13px; color: var(--muted);
-      display: flex; align-items: center; gap: 6px;
-      transition: color .2s;
-    }
+    .footer-links a { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; transition: color .2s; padding: 12px 4px; margin: -12px -4px; }
     .footer-links a:hover { color: var(--accent); }
 
-    /* ══════════════════════════════
-       STAGGER delays
-    ══════════════════════════════ */
     .d1 { transition-delay: .0s; }
     .d2 { transition-delay: .1s; }
     .d3 { transition-delay: .2s; }
     .d4 { transition-delay: .3s; }
     .d5 { transition-delay: .4s; }
+
+    /* ── Focus-visible: keyboard nav ring in brand colour ── */
+    :focus { outline: none; }
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
   </style>
 </head>
 <body>
 
-<!-- Custom Cursor -->
-<div class="cursor" id="cursor"></div>
-
 <!-- ── NAV ── -->
-<nav id="nav">
+<nav id="nav" aria-label="Основная навигация">
   <div class="container">
     <a href="#" class="nav-logo">M<span>.</span>AWT</a>
     <div class="nav-links">
@@ -393,12 +296,18 @@
       <a href="#cases">Кейсы</a>
       <a href="#why">Почему я</a>
     </div>
-    <a href="https://t.me/xywtada" target="_blank" class="nav-cta">Написать</a>
+    <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="nav-cta">Написать</a>
   </div>
 </nav>
 
+<!-- ── MAIN ── -->
+<main>
+
 <!-- ── HERO ── -->
 <section class="hero" id="home">
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-eyebrow reveal d1">Дизайн и разработка</div>
     <h1 class="hero-h1 reveal d2">
@@ -416,23 +325,13 @@
         <p>Создаю рекламные материалы, карточки товаров, сайты и автоматизацию. Быстро, точно, под ключ.</p>
         <div class="hero-actions">
           <a href="#cases" class="btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             Посмотреть работы
           </a>
-          <a href="https://t.me/xywtada" target="_blank" class="btn-secondary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
             Telegram
           </a>
-        </div>
-      </div>
-      <div class="hero-stats reveal d4">
-        <div class="hero-stat" style="margin-bottom: 32px;">
-          <div class="hero-stat-num">50+</div>
-          <div class="hero-stat-label">проектов сдано</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">3</div>
-          <div class="hero-stat-label">направления работ</div>
         </div>
       </div>
     </div>
@@ -451,37 +350,37 @@
     </div>
     <div class="bento">
 
-      <!-- Рекламные баннеры — wide -->
+      <!-- 01 Рекламные баннеры -->
       <div class="bento-card bento-wide reveal d1">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="10" width="36" height="24" rx="3"/>
-          <path d="M4 16h36M14 22h16M14 28h10"/>
+        <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="9" width="36" height="26" rx="3"/>
+          <path d="M4 35l12-13 8 8 5-6 11 11"/>
+          <circle cx="32" cy="20" r="4"/>
         </svg>
         <div class="card-title">Рекламные баннеры</div>
         <p class="card-desc">Баннеры для таргета, маркетплейсов, сайтов и офлайн-рекламы. Форматы под любую площадку.</p>
-        <span class="card-price">от 800 ₽</span>
+        <span class="card-price">от 1 000 ₽</span>
         <span class="card-num">01</span>
       </div>
 
-      <!-- Карточки маркетплейсов — tall -->
+      <!-- 02 Карточки маркетплейсов -->
       <div class="bento-card bento-tall reveal d2">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="10" y="4" width="24" height="36" rx="3"/>
-          <path d="M16 14h12M16 20h12M16 26h8"/>
-          <circle cx="18" cy="8" r="1.5" fill="currentColor"/>
+        <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="12" y="4" width="20" height="36" rx="4"/>
+          <path d="M12 12h20M12 32h20"/>
+          <rect x="16" y="15" width="12" height="10" rx="1.5"/>
+          <path d="M16 28h7M16 30.5h5"/>
         </svg>
         <div class="card-title">Карточки для маркетплейсов</div>
         <p class="card-desc">WB, Ozon, Яндекс Маркет. Инфографика, фото-рендер, Rich-контент. Карточка, которая продаёт.</p>
-        <span class="card-price">от 600 ₽ / шт</span>
+        <span class="card-price">от 500 ₽ / шт</span>
         <span class="card-num">02</span>
       </div>
 
-      <!-- Наклейки -->
+      <!-- 03 Наклейки -->
       <div class="bento-card reveal d3">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="22" cy="22" r="16"/>
-          <path d="M22 10c-4 0-8 3-9 8M14 30c2 3 5 5 8 5"/>
-          <path d="M28 12c3 2 5 5 5 9" stroke-dasharray="3 3"/>
+        <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 8h10l10 5 2 6-5 2-5-4v21H15V17l-5 4-5-2 2-6z"/>
         </svg>
         <div class="card-title">Наклейки и мерч</div>
         <p class="card-desc">Фирменные стикеры, мерч, наклейки для упаковки и брендинга.</p>
@@ -489,41 +388,47 @@
         <span class="card-num">03</span>
       </div>
 
-      <!-- Дизайн под ключ -->
+      <!-- 04 Дизайн под ключ -->
       <div class="bento-card reveal d4">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 4l4 8h8l-6.5 5.5 2.5 8.5L22 22l-8 4 2.5-8.5L10 12h8z"/>
-          <circle cx="22" cy="34" r="3"/>
-          <path d="M22 28v3"/>
+        <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 39l-7-5V21l7-17 7 17v13z"/>
+          <path d="M15 21h14"/>
+          <path d="M19 12l3 9 3-9"/>
+          <circle cx="22" cy="9" r="2" fill="currentColor" stroke="none"/>
         </svg>
         <div class="card-title">Дизайн под ключ</div>
         <p class="card-desc">Логотип, фирменный стиль, презентации, полиграфия — всё в одних руках.</p>
-        <span class="card-price">от 2 000 ₽</span>
+        <span class="card-price">от 10 000 ₽</span>
         <span class="card-num">04</span>
       </div>
 
-      <!-- Сайты — wide -->
+      <!-- 05 Сайты -->
       <div class="bento-card bento-wide reveal d1">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="8" width="36" height="28" rx="3"/>
-          <path d="M4 15h36M10 11.5h.5M14 11.5h.5M18 11.5h.5"/>
-          <path d="M14 22h16M14 28h10"/>
+          <path d="M4 16h36"/>
+          <circle cx="10" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="16" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="22" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          <path d="M15 23l-4 4 4 4"/>
+          <path d="M29 23l4 4-4 4"/>
+          <path d="M21 22l-2 10"/>
         </svg>
         <div class="card-title">Сайты под ключ</div>
         <p class="card-desc">Лендинги, сайты-визитки, корпоративные сайты. Дизайн + вёрстка + настройка.</p>
-        <span class="card-price">от 8 000 ₽</span>
+        <span class="card-price">от 15 000 ₽</span>
         <span class="card-num">05</span>
       </div>
 
-      <!-- Telegram-боты -->
+      <!-- 06 Telegram-боты -->
       <div class="bento-card reveal d2">
-        <svg class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M38 8L6 20l12 4 4 12 16-28z"/>
-          <path d="M18 24l6-6"/>
+        <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="22" cy="22" r="17"/>
+          <path d="M9 22L33 10L25 32L21 19Z"/>
         </svg>
         <div class="card-title">Telegram-боты</div>
         <p class="card-desc">Боты для записи, продаж, рассылок, автоответов. Полная автоматизация под ключ.</p>
-        <span class="card-price">от 5 000 ₽</span>
+        <span class="card-price">от 10 000 ₽</span>
         <span class="card-num">06</span>
       </div>
 
@@ -543,10 +448,10 @@
     </div>
     <div class="cases-grid">
 
-      <!-- Кейс 1 — wide -->
+      <!-- Кейс 1 -->
       <div class="case-card reveal d1">
         <div class="case-mockup">
-          <div class="mockup-auto"></div>
+          <img src="case-ozon.jpg" alt="Карточки товара на Ozon для магазина автоаксессуаров" loading="lazy" decoding="async">
         </div>
         <div class="case-info">
           <div class="case-tag">Маркетплейс · Ozon</div>
@@ -558,7 +463,7 @@
       <!-- Кейс 2 -->
       <div class="case-card reveal d2">
         <div class="case-mockup">
-          <div class="mockup-bar"></div>
+          <img src="case-barber.jpg" alt="Сайт барбершопа Brutal Barbershop &amp; Style" loading="lazy" decoding="async">
         </div>
         <div class="case-info">
           <div class="case-tag">Сайт · Барбершоп</div>
@@ -570,11 +475,7 @@
       <!-- Кейс 3 -->
       <div class="case-card reveal d3">
         <div class="case-mockup">
-          <div class="mockup-bot">
-            <div class="bot-bubble">📦 Ваш заказ оформлен</div>
-            <div class="bot-bubble right">Оплатить → 490 ₽</div>
-            <div class="bot-bubble">🛵 Курьер выехал!</div>
-          </div>
+          <img src="case-bot.jpg" alt="Telegram-бот для доставки FastPizza" loading="lazy" decoding="async">
         </div>
         <div class="case-info">
           <div class="case-tag">Telegram-бот · Доставка</div>
@@ -601,7 +502,7 @@
       <div class="why-card reveal d2">
         <span class="why-icon">🎯</span>
         <div class="why-title">Точно в задачу</div>
-        <p class="why-desc">Сначала разбираюсь в продукте и аудитории, потом делаю. Не «красиво», а работает.</p>
+        <p class="why-desc">Сначала разбираюсь в вашем продукте и аудитории — потом берусь за работу. Делаю то, что приносит заявки и продажи, а не просто выглядит красиво.</p>
       </div>
       <div class="why-card reveal d3">
         <span class="why-icon">🔄</span>
@@ -625,21 +526,23 @@
       Обсудим<br>ваш <span>проект?</span>
     </h2>
     <p class="cta-sub reveal">Напишите — отвечу быстро, расскажу стоимость и сроки без воды.</p>
-    <a href="https://t.me/xywtada" target="_blank" class="btn-primary reveal" style="font-size:16px; padding: 18px 40px; margin: 0 auto; display:inline-flex;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="btn-primary reveal" style="font-size:16px; padding: 18px 40px; margin: 0 auto; display:inline-flex;">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       Написать в Telegram
     </a>
   </div>
 </section>
 
+</main>
+
 <!-- ── FOOTER ── -->
 <footer>
   <div class="container">
     <div class="footer-logo">M<span>.</span>AWT</div>
-    <span class="footer-copy">© 2025 Mawt — дизайн и разработка</span>
+    <span class="footer-copy">© 2026 Mawt — дизайн и разработка</span>
     <div class="footer-links">
-      <a href="https://t.me/xywtada" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
         @xywtada
       </a>
     </div>
@@ -647,41 +550,17 @@
 </footer>
 
 <script>
-  // ── Custom Cursor ──
-  const cursor = document.getElementById('cursor');
-  let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    cursor.classList.add('visible');
-  });
-  document.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
-  const interactives = document.querySelectorAll('a, button, .bento-card, .case-card, .why-card');
-  interactives.forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
-  (function animCursor() {
-    curX += (mouseX - curX) * 0.15;
-    curY += (mouseY - curY) * 0.15;
-    cursor.style.left = curX + 'px';
-    cursor.style.top  = curY + 'px';
-    requestAnimationFrame(animCursor);
-  })();
-
-  // ── Nav scroll ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // ── Scroll-reveal ──
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   reveals.forEach(el => io.observe(el));
 
-  // ── Hero reveals on load ──
   window.addEventListener('load', () => {
     document.querySelectorAll('.hero .reveal').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), 100 + i * 150);
