@@ -194,7 +194,17 @@
       line-height: 1.35; overflow: visible;
     }
     .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
-    .card-price { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .03em; }
+    .card-price { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .03em; display: block; margin-bottom: 16px; }
+    .card-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 18px; border-radius: 20px;
+      border: 1px solid rgba(196,168,130,.35);
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+      transition: background .2s, border-color .2s, color .2s;
+      position: relative; z-index: 1;
+    }
+    .card-btn:hover { background: var(--accent); border-color: var(--accent); color: #111; }
     .card-num {
       position: absolute; bottom: 24px; right: 28px;
       font-family: 'Syne', sans-serif; font-weight: 800;
@@ -377,6 +387,7 @@
         <div class="card-title">Рекламные баннеры</div>
         <p class="card-desc">Баннеры для таргета, маркетплейсов, сайтов и офлайн-рекламы. Форматы под любую площадку.</p>
         <span class="card-price">от 1 000 ₽</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20заказ%20рекламных%20баннеров." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
         <span class="card-num">01</span>
       </div>
 
@@ -391,6 +402,7 @@
         <div class="card-title">Карточки для маркетплейсов</div>
         <p class="card-desc">WB, Ozon, Яндекс Маркет. Инфографика, фото-рендер, Rich-контент. Карточка, которая продаёт.</p>
         <span class="card-price">от 500 ₽ / шт</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20дизайн%20карточек%20для%20маркетплейсов." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
         <span class="card-num">02</span>
       </div>
 
@@ -402,6 +414,7 @@
         <div class="card-title">Наклейки и мерч</div>
         <p class="card-desc">Фирменные стикеры, мерч, наклейки для упаковки и брендинга.</p>
         <span class="card-price">от 500 ₽</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20заказ%20наклеек%20и%20мерча." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
         <span class="card-num">03</span>
       </div>
 
@@ -416,6 +429,7 @@
         <div class="card-title">Дизайн под ключ</div>
         <p class="card-desc">Логотип, фирменный стиль, презентации, полиграфия — всё в одних руках.</p>
         <span class="card-price">от 10 000 ₽</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20дизайн%20под%20ключ." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
         <span class="card-num">04</span>
       </div>
 
@@ -434,6 +448,7 @@
         <div class="card-title">Сайты под ключ</div>
         <p class="card-desc">Лендинги, сайты-визитки, корпоративные сайты. Дизайн + вёрстка + настройка.</p>
         <span class="card-price">от 15 000 ₽</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20разработка%20сайта%20под%20ключ." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
         <span class="card-num">05</span>
       </div>
 
@@ -446,6 +461,7 @@
         <div class="card-title">Telegram-боты</div>
         <p class="card-desc">Боты для записи, продаж, рассылок, автоответов. Полная автоматизация под ключ.</p>
         <span class="card-price">от 10 000 ₽</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20разработка%20Telegram-бота." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
         <span class="card-num">06</span>
       </div>
 
