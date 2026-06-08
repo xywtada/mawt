@@ -174,7 +174,7 @@
     .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .bento-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px;
+      border-radius: var(--radius); padding: 32px 32px 84px;
       transition: border-color .3s, transform .3s;
       cursor: default; position: relative; overflow: hidden;
     }
@@ -194,7 +194,7 @@
       line-height: 1.35; overflow: visible;
     }
     .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
-    .card-price { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .03em; display: block; margin-bottom: 16px; }
+    .card-price { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .03em; display: block; }
     .card-btn {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 8px 18px; border-radius: 20px;
@@ -202,7 +202,7 @@
       font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
       color: var(--accent); text-decoration: none;
       transition: background .2s, border-color .2s, color .2s;
-      position: relative; z-index: 1;
+      position: absolute; bottom: 28px; left: 32px; z-index: 2;
     }
     .card-btn:hover { background: var(--accent); border-color: var(--accent); color: #111; }
     .card-num {
@@ -409,7 +409,7 @@
       <!-- 03 Наклейки -->
       <div class="bento-card reveal d3">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 8h10l10 5 2 6-5 2-5-4v21H15V17l-5 4-5-2 2-6z"/>
+          <path d="M17 8Q22 12 27 8l7 5 6 3v6l-6-3-4-2v21H14V17l-4 2-6 3v-6l6-3z"/>
         </svg>
         <div class="card-title">Наклейки и мерч</div>
         <p class="card-desc">Фирменные стикеры, мерч, наклейки для упаковки и брендинга.</p>
@@ -456,7 +456,7 @@
       <div class="bento-card reveal d2">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="22" cy="22" r="17"/>
-          <path d="M9 22L33 10L25 32L21 19Z"/>
+          <path d="M10 23L34 11L27 34L22 22Z"/>
         </svg>
         <div class="card-title">Telegram-боты</div>
         <p class="card-desc">Боты для записи, продаж, рассылок, автоответов. Полная автоматизация под ключ.</p>
