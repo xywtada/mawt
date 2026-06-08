@@ -250,9 +250,26 @@
     @media (max-width: 520px) { .why-grid { grid-template-columns: 1fr; } }
 
     /* ── CTA ── */
-    .cta-section { padding: 120px 0; border-bottom: 1px solid var(--border); text-align: center; }
-    .cta-section .section-label { justify-content: center; }
+    .cta-section { padding: 120px 0; border-bottom: 1px solid var(--border); text-align: center; position: relative; overflow: hidden; }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 90% at 50% 50%, rgba(196,168,130,.1) 0%, transparent 70%);
+    }
+    .cta-section::after {
+      content: ''; position: absolute; pointer-events: none;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 580px; height: 580px;
+      border: 1px solid rgba(196,168,130,.08); border-radius: 50%;
+    }
+    .cta-ring {
+      position: absolute; pointer-events: none;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 880px; height: 880px;
+      border: 1px solid rgba(196,168,130,.04); border-radius: 50%;
+    }
+    .cta-section .section-label { justify-content: center; position: relative; z-index: 1; }
     .cta-section .section-label::before { display: none; }
+    .cta-section .container { position: relative; z-index: 1; }
     .cta-h {
       font-family: 'Syne', sans-serif; font-weight: 800;
       font-size: clamp(36px, 7vw, 80px);
@@ -520,6 +537,7 @@
 
 <!-- ── CTA ── -->
 <section class="cta-section">
+  <div class="cta-ring" aria-hidden="true"></div>
   <div class="container">
     <div class="section-label">Готов к работе</div>
     <h2 class="cta-h reveal">
