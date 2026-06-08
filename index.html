@@ -3,18 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <title>Mawt — Дизайн и разработка под ключ</title>
   <meta name="description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽. Пишите — отвечу в течение часа.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mawt — Дизайн и разработка под ключ">
   <meta property="og:description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:url" content="https://xywtada.github.io/mawt/">
+  <meta property="og:image" content="https://xywtada.github.io/mawt/case-barber.jpg">
+  <meta property="og:image:width" content="900">
+  <meta property="og:image:height" content="506">
+  <link rel="canonical" href="https://xywtada.github.io/mawt/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://xywtada.github.io/mawt/case-barber.jpg">
   <meta name="twitter:title" content="Mawt — Дизайн и разработка под ключ">
   <meta name="twitter:description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111111'/><text x='16' y='23' font-family='Arial Black,sans-serif' font-weight='900' font-size='19' fill='%23c4a882' text-anchor='middle'>M</text></svg>">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -39,6 +49,8 @@
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    .skip-nav { position: absolute; top: -9999px; left: 16px; padding: 10px 20px; background: var(--accent); color: var(--bg); font-weight: 700; font-size: 14px; border-radius: 0 0 8px 8px; z-index: 9999; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+    .skip-nav:focus { top: 0; outline: 2px solid var(--bg); outline-offset: 2px; }
 
     body::before {
       content: '';
@@ -67,15 +79,17 @@
       border-color: var(--border);
     }
     nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: .05em; }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: .05em; display: inline-flex; align-items: center; min-height: 44px; }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 36px; }
-    .nav-links a { font-size: 14px; color: var(--muted); transition: color .2s; letter-spacing: .02em; }
+    .nav-links a { font-size: 14px; color: var(--muted); transition: color .2s; letter-spacing: .02em; display: inline-flex; align-items: center; min-height: 44px; }
     .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); }
     .nav-cta {
       font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
       padding: 11px 22px; border: 1px solid var(--border);
       border-radius: 40px; color: var(--muted);
+      display: inline-flex; align-items: center; min-height: 44px;
       transition: border-color .2s, color .2s;
     }
     .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
@@ -84,6 +98,9 @@
       .nav-links a { font-size: 11px; letter-spacing: .01em; white-space: nowrap; }
       .nav-logo { font-size: 18px; }
       .nav-cta { font-size: 11px; padding: 9px 14px; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
     }
 
     /* ── HERO ── */
@@ -132,7 +149,8 @@
     .hero-desc { max-width: 420px; }
     .hero-desc p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
-    .tag { font-size: 12px; letter-spacing: .06em; color: var(--muted); padding: 5px 14px; border: 1px solid var(--border); border-radius: 40px; }
+    .tag { font-size: 12px; letter-spacing: .06em; color: var(--muted); padding: 5px 14px; border: 1px solid var(--border); border-radius: 40px; text-decoration: none; transition: border-color .2s, color .2s; display: inline-flex; align-items: center; min-height: 44px; }
+    .tag:hover { border-color: rgba(196,168,130,.4); color: var(--accent); }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
@@ -197,7 +215,7 @@
     .card-price { font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .03em; display: block; }
     .card-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 18px; border-radius: 20px;
+      padding: 12px 18px; border-radius: 20px; min-height: 44px;
       border: 1px solid rgba(196,168,130,.35);
       font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
       color: var(--accent); text-decoration: none;
@@ -230,9 +248,9 @@
     .case-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden;
-      transition: border-color .3s, transform .3s; cursor: pointer;
+      transition: border-color .3s;
     }
-    .case-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .case-card:hover { border-color: rgba(196,168,130,.5); }
     .case-card:first-child { grid-column: span 2; }
     .case-mockup { position: relative; overflow: hidden; aspect-ratio: 16 / 9; }
     .case-mockup img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
@@ -310,14 +328,29 @@
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+      .cta-section { padding: 80px 0; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 20px; }
+      .services-head, .cases-head { margin-bottom: 32px; }
+      .why-grid { margin-top: 32px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .bento-card:hover, .case-card:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
 
 <!-- ── NAV ── -->
+<a class="skip-nav" href="#main-content">Перейти к содержимому</a>
 <nav id="nav" aria-label="Основная навигация">
   <div class="container">
-    <a href="#" class="nav-logo">M<span>.</span>AWT</a>
+    <a href="#home" class="nav-logo" aria-label="M.AWT — на главную">M<span>.</span>AWT</a>
     <div class="nav-links">
       <a href="#services">Услуги</a>
       <a href="#cases">Кейсы</a>
@@ -328,26 +361,26 @@
 </nav>
 
 <!-- ── MAIN ── -->
-<main>
+<main id="main-content">
 
 <!-- ── HERO ── -->
-<section class="hero" id="home">
+<section class="hero" id="home" aria-labelledby="heading-home">
   <div class="hero-deco hero-deco-1"></div>
   <div class="hero-deco hero-deco-2"></div>
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-eyebrow reveal d1">Дизайн и разработка</div>
-    <h1 class="hero-h1 reveal d2">
+    <h1 class="hero-h1 reveal d2" id="heading-home">
       Ваш проект —<br><span class="accent-line">готов.</span>
     </h1>
     <div class="hero-bottom reveal d3">
       <div class="hero-desc">
         <div class="hero-tags">
-          <span class="tag">Баннеры</span>
-          <span class="tag">Маркетплейсы</span>
-          <span class="tag">Сайты</span>
-          <span class="tag">Telegram-боты</span>
-          <span class="tag">Наклейки</span>
+          <a href="#services" class="tag">Баннеры</a>
+          <a href="#services" class="tag">Маркетплейсы</a>
+          <a href="#services" class="tag">Сайты</a>
+          <a href="#services" class="tag">Telegram-боты</a>
+          <a href="#services" class="tag">Наклейки</a>
         </div>
         <p>Создаю рекламные материалы, карточки товаров, сайты и автоматизацию. Быстро, точно, под ключ.</p>
         <div class="hero-actions">
@@ -366,12 +399,12 @@
 </section>
 
 <!-- ── SERVICES ── -->
-<section id="services">
+<section id="services" aria-labelledby="heading-services">
   <div class="container">
     <div class="services-head">
       <div>
         <div class="section-label reveal">Услуги</div>
-        <h2 class="section-title reveal">Что я делаю</h2>
+        <h2 class="section-title reveal" id="heading-services">Что я делаю</h2>
       </div>
       <p class="section-sub reveal">Работаю быстро и по делу — от брифа до готового результата без лишних звеньев.</p>
     </div>
@@ -387,8 +420,8 @@
         <div class="card-title">Рекламные баннеры</div>
         <p class="card-desc">Баннеры для таргета, маркетплейсов, сайтов и офлайн-рекламы. Форматы под любую площадку.</p>
         <span class="card-price">от 1 000 ₽</span>
-        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20заказ%20рекламных%20баннеров." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
-        <span class="card-num">01</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20заказ%20рекламных%20баннеров." target="_blank" rel="noopener noreferrer" class="card-btn" aria-label="Написать насчёт рекламных баннеров">Написать</a>
+        <span class="card-num" aria-hidden="true">01</span>
       </div>
 
       <!-- 02 Карточки маркетплейсов -->
@@ -402,21 +435,20 @@
         <div class="card-title">Карточки для маркетплейсов</div>
         <p class="card-desc">WB, Ozon, Яндекс Маркет. Инфографика, фото-рендер, Rich-контент. Карточка, которая продаёт.</p>
         <span class="card-price">от 500 ₽ / шт</span>
-        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20дизайн%20карточек%20для%20маркетплейсов." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
-        <span class="card-num">02</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20дизайн%20карточек%20для%20маркетплейсов." target="_blank" rel="noopener noreferrer" class="card-btn" aria-label="Написать насчёт карточек для маркетплейсов">Написать</a>
+        <span class="card-num" aria-hidden="true">02</span>
       </div>
 
       <!-- 03 Наклейки -->
       <div class="bento-card reveal d3">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 10C11 6 3 7 3 16v8l10 4v12Q13 41 15 41h14Q31 41 31 40V28l10-4v-8C41 7 33 6 29 10 26 14 18 14 15 10Z"/>
-          <path d="M17 11Q22 17 27 11"/>
+          <path d="M14 5C10 3 3 6 3 10v8h6v20Q9 40 11 40H33Q35 40 35 38v-20h6v-8C41 6 34 3 30 5 25 10 19 10 14 5Z"/>
         </svg>
         <div class="card-title">Наклейки и мерч</div>
         <p class="card-desc">Фирменные стикеры, мерч, наклейки для упаковки и брендинга.</p>
         <span class="card-price">от 500 ₽</span>
-        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20заказ%20наклеек%20и%20мерча." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
-        <span class="card-num">03</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20заказ%20наклеек%20и%20мерча." target="_blank" rel="noopener noreferrer" class="card-btn" aria-label="Написать насчёт наклеек и мерча">Написать</a>
+        <span class="card-num" aria-hidden="true">03</span>
       </div>
 
       <!-- 04 Дизайн под ключ -->
@@ -430,8 +462,8 @@
         <div class="card-title">Дизайн под ключ</div>
         <p class="card-desc">Логотип, фирменный стиль, презентации, полиграфия — всё в одних руках.</p>
         <span class="card-price">от 10 000 ₽</span>
-        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20дизайн%20под%20ключ." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
-        <span class="card-num">04</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20дизайн%20под%20ключ." target="_blank" rel="noopener noreferrer" class="card-btn" aria-label="Написать насчёт дизайна под ключ">Написать</a>
+        <span class="card-num" aria-hidden="true">04</span>
       </div>
 
       <!-- 05 Сайты -->
@@ -449,8 +481,8 @@
         <div class="card-title">Сайты под ключ</div>
         <p class="card-desc">Лендинги, сайты-визитки, корпоративные сайты. Дизайн + вёрстка + настройка.</p>
         <span class="card-price">от 15 000 ₽</span>
-        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20разработка%20сайта%20под%20ключ." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
-        <span class="card-num">05</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20разработка%20сайта%20под%20ключ." target="_blank" rel="noopener noreferrer" class="card-btn" aria-label="Написать насчёт сайта под ключ">Написать</a>
+        <span class="card-num" aria-hidden="true">05</span>
       </div>
 
       <!-- 06 Telegram-боты -->
@@ -462,8 +494,8 @@
         <div class="card-title">Telegram-боты</div>
         <p class="card-desc">Боты для записи, продаж, рассылок, автоответов. Полная автоматизация под ключ.</p>
         <span class="card-price">от 10 000 ₽</span>
-        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20разработка%20Telegram-бота." target="_blank" rel="noopener noreferrer" class="card-btn">Написать</a>
-        <span class="card-num">06</span>
+        <a href="https://t.me/xywtada?text=Здравствуйте!%20Меня%20интересует%20разработка%20Telegram-бота." target="_blank" rel="noopener noreferrer" class="card-btn" aria-label="Написать насчёт Telegram-бота">Написать</a>
+        <span class="card-num" aria-hidden="true">06</span>
       </div>
 
     </div>
@@ -471,12 +503,12 @@
 </section>
 
 <!-- ── CASES ── -->
-<section id="cases">
+<section id="cases" aria-labelledby="heading-cases">
   <div class="container">
     <div class="cases-head">
       <div>
         <div class="section-label reveal">Кейсы</div>
-        <h2 class="section-title reveal">Примеры работ</h2>
+        <h2 class="section-title reveal" id="heading-cases">Примеры работ</h2>
       </div>
       <p class="section-sub reveal">Реальные задачи, конкретные результаты. Каждый проект — индивидуальный подход.</p>
     </div>
@@ -523,28 +555,28 @@
 </section>
 
 <!-- ── WHY ── -->
-<section id="why">
+<section id="why" aria-labelledby="heading-why">
   <div class="container">
     <div class="section-label reveal">Почему я</div>
-    <h2 class="section-title reveal">Просто и по делу</h2>
+    <h2 class="section-title reveal" id="heading-why">Просто и по делу</h2>
     <div class="why-grid">
       <div class="why-card reveal d1">
-        <span class="why-icon">⚡</span>
+        <span class="why-icon" aria-hidden="true">⚡</span>
         <div class="why-title">Быстро</div>
         <p class="why-desc">Баннеры — за 1 день. Сайт — за 5–7 дней. Дедлайн — не просто слово.</p>
       </div>
       <div class="why-card reveal d2">
-        <span class="why-icon">🎯</span>
+        <span class="why-icon" aria-hidden="true">🎯</span>
         <div class="why-title">Точно в задачу</div>
         <p class="why-desc">Сначала разбираюсь в вашем продукте и аудитории — потом берусь за работу. Делаю то, что приносит заявки и продажи, а не просто выглядит красиво.</p>
       </div>
       <div class="why-card reveal d3">
-        <span class="why-icon">🔄</span>
+        <span class="why-icon" aria-hidden="true">🔄</span>
         <div class="why-title">Правки включены</div>
         <p class="why-desc">Две бесплатные итерации в каждом проекте. Без скандалов и доп. оплаты.</p>
       </div>
       <div class="why-card reveal d4">
-        <span class="why-icon">💬</span>
+        <span class="why-icon" aria-hidden="true">💬</span>
         <div class="why-title">На связи</div>
         <p class="why-desc">Отвечаю в течение часа. Пишу честно, если что-то не так с идеей.</p>
       </div>
@@ -553,11 +585,11 @@
 </section>
 
 <!-- ── CTA ── -->
-<section class="cta-section">
+<section class="cta-section" id="contact" aria-labelledby="heading-contact">
   <div class="cta-ring" aria-hidden="true"></div>
   <div class="container">
     <div class="section-label">Готов к работе</div>
-    <h2 class="cta-h reveal">
+    <h2 class="cta-h reveal" id="heading-contact">
       Обсудим<br>ваш <span>проект?</span>
     </h2>
     <p class="cta-sub reveal">Напишите — отвечу быстро, расскажу стоимость и сроки без воды.</p>
@@ -601,6 +633,17 @@
       setTimeout(() => el.classList.add('visible'), 100 + i * 150);
     });
   });
+
+  const navSections = document.querySelectorAll('section[id]');
+  const spyIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (!link) return;
+      if (e.isIntersecting) link.classList.add('active');
+      else link.classList.remove('active');
+    });
+  }, { rootMargin: '-88px 0px -55% 0px', threshold: 0 });
+  navSections.forEach(s => spyIO.observe(s));
 </script>
 </body>
 </html>
