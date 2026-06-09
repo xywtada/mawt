@@ -4,30 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111111" />
+  <meta name="color-scheme" content="dark" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <title>Mawt — Дизайн и разработка под ключ</title>
   <meta name="description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽. Пишите — отвечу в течение часа.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mawt — Дизайн и разработка под ключ">
   <meta property="og:description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽.">
-  <meta property="og:url" content="https://xywtada.github.io/mawt/">
-  <meta property="og:image" content="https://xywtada.github.io/mawt/case-barber.jpg">
+  <meta property="og:url" content="https://mawt.ru/">
+  <meta property="og:image" content="https://mawt.ru/case-barber.jpg">
   <meta property="og:image:width" content="900">
   <meta property="og:image:height" content="506">
-  <link rel="canonical" href="https://xywtada.github.io/mawt/">
+  <link rel="canonical" href="https://mawt.ru/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://xywtada.github.io/mawt/case-barber.jpg">
+  <meta name="twitter:image" content="https://mawt.ru/case-barber.jpg">
   <meta name="twitter:title" content="Mawt — Дизайн и разработка под ключ">
   <meta name="twitter:description" content="Дизайн и разработка под ключ: баннеры, карточки для маркетплейсов, сайты и Telegram-боты. Карточки от 500 ₽, сайты от 15 000 ₽.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111111'/><text x='16' y='23' font-family='Arial Black,sans-serif' font-weight='900' font-size='19' fill='%23c4a882' text-anchor='middle'>M</text></svg>">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+  <noscript><style>.reveal { opacity: 1 !important; transform: none !important; transition: none !important; }</style></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
+      color-scheme: dark;
       --bg:       #111111;
       --surface:  #1a1a1a;
       --surface2: #212121;
@@ -95,12 +98,45 @@
     .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
     @media (max-width: 768px) {
       .nav-links { gap: 14px; }
-      .nav-links a { font-size: 11px; letter-spacing: .01em; white-space: nowrap; }
+      .nav-links a { font-size: 13px; letter-spacing: .01em; white-space: nowrap; }
       .nav-logo { font-size: 18px; }
-      .nav-cta { font-size: 11px; padding: 9px 14px; }
+      .nav-cta { font-size: 13px; padding: 9px 16px; }
     }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px; height: 44px;
+      background: none; border: none;
+      cursor: pointer; padding: 10px;
+      flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform .25s, opacity .2s;
+      transform-origin: center;
+    }
+    nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     @media (max-width: 480px) {
-      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: flex; flex-direction: column; gap: 0;
+        position: fixed; top: 86px; left: 0; right: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 6px 0 12px;
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path .22s cubic-bezier(.4,0,.2,1);
+        pointer-events: none;
+        z-index: 999;
+      }
+      nav.nav-open .nav-links { clip-path: inset(0 0 0% 0); pointer-events: auto; }
+      .nav-links a { font-size: 16px; padding: 10px 24px; min-height: 48px; justify-content: flex-start; white-space: nowrap; }
     }
 
     /* ── HERO ── */
@@ -207,7 +243,7 @@
     .bento-tall { grid-row: span 2; }
     .card-icon { width: 44px; height: 44px; margin-bottom: 24px; color: var(--accent); }
     .card-title {
-      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-family: 'Manrope', sans-serif; font-weight: 700;
       font-size: 20px; letter-spacing: -.02em; margin-bottom: 10px;
       line-height: 1.35; overflow: visible;
     }
@@ -257,7 +293,7 @@
 
     .case-info { padding: 24px 28px; }
     .case-tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-    .case-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -.02em; margin-bottom: 8px; }
+    .case-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -.02em; margin-bottom: 8px; }
     .case-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
     @media (max-width: 860px) {
       .cases-grid { grid-template-columns: 1fr; }
@@ -268,11 +304,10 @@
     .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 56px; }
     .why-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px 28px; transition: border-color .3s;
+      border-radius: var(--radius); padding: 32px 28px;
     }
-    .why-card:hover { border-color: var(--accent); }
     .why-icon { font-size: 28px; margin-bottom: 20px; display: block; }
-    .why-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -.01em; margin-bottom: 10px; }
+    .why-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -.01em; margin-bottom: 10px; }
     .why-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
     @media (max-width: 860px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .why-grid { grid-template-columns: 1fr; } }
@@ -309,7 +344,7 @@
     /* ── FOOTER ── */
     footer { padding: 40px 0; }
     footer .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: .05em; }
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: .05em; display: inline-flex; align-items: center; min-height: 44px; }
     .footer-logo span { color: var(--accent); }
     .footer-copy { font-size: 13px; color: var(--muted); }
     .footer-links { display: flex; gap: 20px; }
@@ -336,11 +371,45 @@
       .container { padding: 0 20px; }
       .services-head, .cases-head { margin-bottom: 32px; }
       .why-grid { margin-top: 32px; }
+      .bento-card { padding: 24px 20px 72px; }
+      .case-info { padding: 20px; }
+      .why-card { padding: 24px 20px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions a { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 360px) {
+      .hero-h1 { font-size: 52px; }
     }
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
       .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
       .bento-card:hover, .case-card:hover { transform: none; }
+    }
+
+    /* Card highlight (chip navigation) */
+    @keyframes card-ping {
+      0%   { transform: translateY(0);    border-color: var(--border); box-shadow: 0 0 0 0 transparent; }
+      25%  { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(196,168,130,.25); }
+      65%  { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 0 0 2px rgba(196,168,130,.12); }
+      100% { transform: translateY(0);    border-color: var(--border); box-shadow: 0 0 0 0 transparent; }
+    }
+    .bento-card.chip-target {
+      animation: card-ping 1s cubic-bezier(.4,0,.2,1) forwards;
+    }
+
+    /* Lightbox */
+    .case-mockup { cursor: zoom-in; }
+    .case-mockup::before { content: ''; position: absolute; inset: 0; background-color: rgba(0,0,0,0); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M19 19l-4-4'/%3E%3Cpath d='M10 7v6M7 10h6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 48px; opacity: 0; transition: opacity .2s, background-color .2s; z-index: 1; pointer-events: none; }
+    .case-mockup:hover::before { opacity: 1; background-color: rgba(0,0,0,.32); }
+    .lightbox { position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,.92); display: flex; align-items: center; justify-content: center; padding: 16px; opacity: 0; transition: opacity .25s ease; pointer-events: none; }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox-img { max-width: 100%; max-height: 90dvh; border-radius: 8px; object-fit: contain; transform: scale(.93); transition: transform .25s ease; display: block; }
+    .lightbox.open .lightbox-img { transform: scale(1); }
+    .lightbox-close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.12); border: none; border-radius: 50%; color: #fff; font-size: 22px; cursor: pointer; line-height: 1; transition: background .2s; }
+    .lightbox-close:hover { background: rgba(255,255,255,.22); }
+    @media (prefers-reduced-motion: reduce) {
+      .lightbox, .lightbox-img { transition: none; }
     }
   </style>
 </head>
@@ -351,36 +420,39 @@
 <nav id="nav" aria-label="Основная навигация">
   <div class="container">
     <a href="#home" class="nav-logo" aria-label="M.AWT — на главную">M<span>.</span>AWT</a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-mobile">
       <a href="#services">Услуги</a>
       <a href="#cases">Кейсы</a>
       <a href="#why">Почему я</a>
     </div>
-    <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="nav-cta">Написать</a>
+    <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-mobile">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Написать в Telegram (откроется в новой вкладке)">Написать</a>
   </div>
 </nav>
 
 <!-- ── MAIN ── -->
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
 <!-- ── HERO ── -->
 <section class="hero" id="home" aria-labelledby="heading-home">
-  <div class="hero-deco hero-deco-1"></div>
-  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-deco hero-deco-1" aria-hidden="true"></div>
+  <div class="hero-deco hero-deco-2" aria-hidden="true"></div>
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-eyebrow reveal d1">Дизайн и разработка</div>
     <h1 class="hero-h1 reveal d2" id="heading-home">
-      Ваш проект —<br><span class="accent-line">готов.</span>
+      Ваш проект&nbsp;—<br><span class="accent-line">готов.</span>
     </h1>
     <div class="hero-bottom reveal d3">
       <div class="hero-desc">
         <div class="hero-tags">
-          <a href="#services" class="tag">Баннеры</a>
-          <a href="#services" class="tag">Маркетплейсы</a>
-          <a href="#services" class="tag">Сайты</a>
-          <a href="#services" class="tag">Telegram-боты</a>
-          <a href="#services" class="tag">Наклейки</a>
+          <a href="#service-banners" class="tag">Баннеры</a>
+          <a href="#service-marketplace" class="tag">Маркетплейсы</a>
+          <a href="#service-sites" class="tag">Сайты</a>
+          <a href="#service-bots" class="tag">Telegram-боты</a>
+          <a href="#service-stickers" class="tag">Наклейки и мерч</a>
         </div>
         <p>Создаю рекламные материалы, карточки товаров, сайты и автоматизацию. Быстро, точно, под ключ.</p>
         <div class="hero-actions">
@@ -411,7 +483,7 @@
     <div class="bento">
 
       <!-- 01 Рекламные баннеры -->
-      <div class="bento-card bento-wide reveal d1">
+      <div id="service-banners" class="bento-card bento-wide reveal d1">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="9" width="36" height="26" rx="3"/>
           <path d="M4 35l12-13 8 8 5-6 11 11"/>
@@ -425,7 +497,7 @@
       </div>
 
       <!-- 02 Карточки маркетплейсов -->
-      <div class="bento-card bento-tall reveal d2">
+      <div id="service-marketplace" class="bento-card bento-tall reveal d2">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="12" y="4" width="20" height="36" rx="4"/>
           <path d="M12 12h20M12 32h20"/>
@@ -440,7 +512,7 @@
       </div>
 
       <!-- 03 Наклейки -->
-      <div class="bento-card reveal d3">
+      <div id="service-stickers" class="bento-card reveal d3">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 5C10 3 3 6 3 10v8h6v20Q9 40 11 40H33Q35 40 35 38v-20h6v-8C41 6 34 3 30 5 25 10 19 10 14 5Z"/>
         </svg>
@@ -467,7 +539,7 @@
       </div>
 
       <!-- 05 Сайты -->
-      <div class="bento-card bento-wide reveal d1">
+      <div id="service-sites" class="bento-card bento-wide reveal d1">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="8" width="36" height="28" rx="3"/>
           <path d="M4 16h36"/>
@@ -486,7 +558,7 @@
       </div>
 
       <!-- 06 Telegram-боты -->
-      <div class="bento-card reveal d2">
+      <div id="service-bots" class="bento-card reveal d2">
         <svg aria-hidden="true" class="card-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="22" cy="22" r="17"/>
           <path d="M10 23L34 11L27 34L22 22Z"/>
@@ -517,7 +589,7 @@
       <!-- Кейс 1 -->
       <div class="case-card reveal d1">
         <div class="case-mockup">
-          <img src="case-ozon.jpg" alt="Карточки товара на Ozon для магазина автоаксессуаров" loading="lazy" decoding="async">
+          <img src="case-ozon.jpg" alt="Карточки товара на Ozon для магазина автоаксессуаров" width="1000" height="615" loading="lazy" decoding="async">
         </div>
         <div class="case-info">
           <div class="case-tag">Маркетплейс · Ozon</div>
@@ -529,7 +601,7 @@
       <!-- Кейс 2 -->
       <div class="case-card reveal d2">
         <div class="case-mockup">
-          <img src="case-barber.jpg" alt="Сайт барбершопа Brutal Barbershop &amp; Style" loading="lazy" decoding="async">
+          <img src="case-barber.jpg" alt="Сайт барбершопа Brutal Barbershop &amp; Style" width="900" height="506" loading="lazy" decoding="async">
         </div>
         <div class="case-info">
           <div class="case-tag">Сайт · Барбершоп</div>
@@ -541,7 +613,7 @@
       <!-- Кейс 3 -->
       <div class="case-card reveal d3">
         <div class="case-mockup">
-          <img src="case-bot.jpg" alt="Telegram-бот для доставки FastPizza" loading="lazy" decoding="async">
+          <img src="case-bot.jpg" alt="Telegram-бот для доставки FastPizza" width="675" height="900" loading="lazy" decoding="async">
         </div>
         <div class="case-info">
           <div class="case-tag">Telegram-бот · Доставка</div>
@@ -605,10 +677,10 @@
 <!-- ── FOOTER ── -->
 <footer>
   <div class="container">
-    <div class="footer-logo">M<span>.</span>AWT</div>
-    <span class="footer-copy">© 2026 Mawt — дизайн и разработка</span>
+    <a href="#home" class="footer-logo" aria-label="M.AWT — наверх">M<span>.</span>AWT</a>
+    <span class="footer-copy">© <span id="year">2026</span> Mawt — дизайн и разработка</span>
     <div class="footer-links">
-      <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer">
+      <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" aria-label="Telegram @xywtada (откроется в новой вкладке)">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
         @xywtada
       </a>
@@ -617,12 +689,13 @@
 </footer>
 
 <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  const reveals = document.querySelectorAll('.reveal');
+  const reveals = [...document.querySelectorAll('.reveal')].filter(el => !el.closest('.hero'));
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
@@ -634,16 +707,118 @@
     });
   });
 
-  const navSections = document.querySelectorAll('section[id]');
-  const spyIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-      if (!link) return;
-      if (e.isIntersecting) link.classList.add('active');
-      else link.classList.remove('active');
+  const navSections = [...document.querySelectorAll('section[id]')];
+  function updateSpy() {
+    const threshold = window.scrollY + 88 + Math.round((window.innerHeight - 88) * 0.25);
+    let active = null;
+    for (const s of navSections) {
+      if (s.offsetTop <= threshold) active = s;
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', !!active && a.getAttribute('href') === '#' + active.id);
     });
-  }, { rootMargin: '-88px 0px -55% 0px', threshold: 0 });
-  navSections.forEach(s => spyIO.observe(s));
+  }
+  window.addEventListener('scroll', updateSpy, { passive: true });
+  updateSpy();
+
+  // Mobile hamburger menu
+  const navToggle = document.querySelector('.nav-toggle');
+  const navEl = document.getElementById('nav');
+  if (navToggle) {
+    const closeMenu = () => {
+      navEl.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Открыть меню');
+    };
+    navToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = navEl.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', open);
+      navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    });
+    document.querySelectorAll('#nav-mobile a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('click', e => { if (!navEl.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && navEl.classList.contains('nav-open')) { closeMenu(); navToggle.focus(); } });
+  }
+
+  // Chip → service card highlight
+  document.querySelectorAll('.tag[href^="#service-"]').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const id = tag.getAttribute('href').slice(1);
+      const card = document.getElementById(id);
+      if (!card) return;
+      const highlight = () => {
+        card.classList.remove('chip-target');
+        void card.offsetWidth;
+        card.classList.add('chip-target');
+        setTimeout(() => card.classList.remove('chip-target'), 1100);
+      };
+      let fired = false;
+      const fireOnce = () => { if (!fired) { fired = true; highlight(); } };
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', fireOnce, { once: true });
+      }
+      setTimeout(fireOnce, 800);
+    });
+  });
+
+  // Lightbox for case images
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.setAttribute('aria-label', 'Просмотр изображения');
+  const lbImg = document.createElement('img');
+  lbImg.className = 'lightbox-img';
+  lbImg.alt = '';
+  const lbClose = document.createElement('button');
+  lbClose.className = 'lightbox-close';
+  lbClose.setAttribute('aria-label', 'Закрыть');
+  lbClose.innerHTML = '&#x2715;';
+  lb.appendChild(lbImg);
+  lb.appendChild(lbClose);
+  document.body.appendChild(lb);
+
+  let _lbScrollY = 0;
+  let _lbTrigger = null;
+  function openLightbox(src, alt, trigger) {
+    _lbTrigger = trigger || null;
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lb.classList.add('open');
+    _lbScrollY = window.scrollY || document.scrollingElement.scrollTop;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${_lbScrollY}px`;
+    document.body.style.width = '100%';
+    lbClose.focus();
+  }
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, _lbScrollY);
+    if (document.scrollingElement) document.scrollingElement.scrollTop = _lbScrollY;
+    if (_lbTrigger) { _lbTrigger.focus(); _lbTrigger = null; }
+  }
+
+  document.querySelectorAll('.case-mockup').forEach(mockup => {
+    const img = mockup.querySelector('img');
+    if (!img) return;
+    mockup.setAttribute('role', 'button');
+    mockup.setAttribute('tabindex', '0');
+    mockup.setAttribute('aria-label', 'Увеличить изображение: ' + (img.alt || ''));
+    mockup.addEventListener('click', () => openLightbox(img.src, img.alt, mockup));
+    mockup.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img.src, img.alt, mockup); } });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') { closeLightbox(); return; }
+    if (e.key === 'Tab') { e.preventDefault(); lbClose.focus(); }
+  });
 </script>
 </body>
 </html>
