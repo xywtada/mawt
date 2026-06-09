@@ -384,7 +384,7 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
       .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-      .bento-card:hover, .case-card:hover { transform: none; }
+      .bento-card:hover, .case-card:hover, .btn-primary:hover, .btn-secondary:hover { transform: none; }
     }
 
     /* Card highlight (chip navigation) */
@@ -739,6 +739,7 @@
     document.querySelectorAll('#nav-mobile a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('click', e => { if (!navEl.contains(e.target)) closeMenu(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && navEl.classList.contains('nav-open')) { closeMenu(); navToggle.focus(); } });
+    window.addEventListener('scroll', () => { if (navEl.classList.contains('nav-open')) closeMenu(); }, { passive: true });
   }
 
   // Chip → service card highlight
