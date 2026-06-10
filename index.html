@@ -294,7 +294,7 @@
     .case-info { padding: 24px 28px; }
     .case-tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
     .case-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -.02em; margin-bottom: 8px; }
-    .case-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .case-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
     @media (max-width: 860px) {
       .cases-grid { grid-template-columns: 1fr; }
       .case-card:first-child { grid-column: span 1; }
@@ -376,6 +376,7 @@
       .why-card { padding: 24px 20px; }
       .hero-actions { flex-direction: column; }
       .hero-actions a { width: 100%; justify-content: center; }
+      footer .container { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
     @media (max-width: 360px) {
       .hero-h1 { font-size: 52px; }
@@ -388,6 +389,9 @@
     }
 
     /* Card highlight (chip navigation) */
+    #service-banners, #service-marketplace, #service-stickers, #service-sites, #service-bots {
+      scroll-margin-top: 120px;
+    }
     @keyframes card-ping {
       0%   { transform: translateY(0);    border-color: var(--border); box-shadow: 0 0 0 0 transparent; }
       25%  { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(196,168,130,.25); }
@@ -420,15 +424,15 @@
 <nav id="nav" aria-label="Основная навигация">
   <div class="container">
     <a href="#home" class="nav-logo" aria-label="M.AWT — на главную">M<span>.</span>AWT</a>
-    <div class="nav-links" id="nav-mobile">
+    <div class="nav-links" id="nav-mobile" aria-hidden="true">
       <a href="#services">Услуги</a>
       <a href="#cases">Кейсы</a>
       <a href="#why">Почему я</a>
     </div>
+    <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Написать в Telegram (откроется в новой вкладке)">Написать</a>
     <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
-    <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Написать в Telegram (откроется в новой вкладке)">Написать</a>
   </div>
 </nav>
 
@@ -640,7 +644,7 @@
       <div class="why-card reveal d2">
         <span class="why-icon" aria-hidden="true">🎯</span>
         <div class="why-title">Точно в задачу</div>
-        <p class="why-desc">Сначала разбираюсь в вашем продукте и аудитории — потом берусь за работу. Делаю то, что приносит заявки и продажи, а не просто выглядит красиво.</p>
+        <p class="why-desc">Сначала разбираюсь в вашем продукте и аудитории — потом берусь за работу. Не «красиво», а эффективно.</p>
       </div>
       <div class="why-card reveal d3">
         <span class="why-icon" aria-hidden="true">🔄</span>
@@ -725,16 +729,19 @@
   const navToggle = document.querySelector('.nav-toggle');
   const navEl = document.getElementById('nav');
   if (navToggle) {
+    const navMobileEl = document.getElementById('nav-mobile');
     const closeMenu = () => {
       navEl.classList.remove('nav-open');
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.setAttribute('aria-label', 'Открыть меню');
+      navMobileEl.setAttribute('aria-hidden', 'true');
     };
     navToggle.addEventListener('click', e => {
       e.stopPropagation();
       const open = navEl.classList.toggle('nav-open');
       navToggle.setAttribute('aria-expanded', open);
       navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+      navMobileEl.setAttribute('aria-hidden', open ? 'false' : 'true');
     });
     document.querySelectorAll('#nav-mobile a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('click', e => { if (!navEl.contains(e.target)) closeMenu(); });
