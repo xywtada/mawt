@@ -494,7 +494,7 @@
 <nav id="nav" aria-label="Основная навигация">
   <div class="container">
     <a href="#home" class="nav-logo" aria-label="M.AWT — на главную">M<span>.</span>AWT</a>
-    <div class="nav-links" id="nav-mobile" aria-hidden="true" inert>
+    <div class="nav-links" id="nav-mobile">
       <a href="#services">Услуги</a>
       <a href="#cases">Кейсы</a>
       <a href="#why">Почему я</a>
@@ -804,12 +804,18 @@
   const navEl = document.getElementById('nav');
   if (navToggle) {
     const navMobileEl = document.getElementById('nav-mobile');
+    const isMobileNav = () => window.matchMedia('(max-width: 480px)').matches;
     const closeMenu = () => {
       navEl.classList.remove('nav-open');
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.setAttribute('aria-label', 'Открыть меню');
-      navMobileEl.setAttribute('aria-hidden', 'true');
-      navMobileEl.setAttribute('inert', '');
+      if (isMobileNav()) {
+        navMobileEl.setAttribute('aria-hidden', 'true');
+        navMobileEl.setAttribute('inert', '');
+      } else {
+        navMobileEl.setAttribute('aria-hidden', 'false');
+        navMobileEl.removeAttribute('inert');
+      }
     };
     navToggle.addEventListener('click', e => {
       e.stopPropagation();
