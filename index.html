@@ -80,7 +80,7 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
     .skip-nav { position: absolute; top: -9999px; left: 16px; padding: 10px 20px; background: var(--accent); color: var(--bg); font-weight: 700; font-size: 14px; border-radius: 0 0 8px 8px; z-index: 9999; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
-    .skip-nav:focus { top: 0; outline: 2px solid var(--bg); outline-offset: 2px; }
+    .skip-nav:focus { top: 0; outline: 2px solid #fff; outline-offset: 2px; }
 
     body::before {
       content: '';
@@ -151,7 +151,7 @@
     nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    @media (max-width: 480px) {
+    @media (max-width: 640px) {
       .nav-toggle { display: flex; }
       .nav-links {
         display: flex; flex-direction: column; gap: 0;
@@ -312,6 +312,12 @@
       .bento-card:nth-child(4),
       .bento-card:nth-child(6) { grid-column: span 1; }
     }
+    @media (min-width: 521px) and (max-width: 709px) {
+      .card-num { display: none; }
+    }
+    @media (min-width: 861px) and (max-width: 1044px) {
+      .card-num { display: none; }
+    }
 
     /* ── CASES ── */
     .cases-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 32px; flex-wrap: wrap; }
@@ -324,6 +330,7 @@
     .case-card:hover { border-color: rgba(196,168,130,.5); }
     .case-card:first-child { grid-column: span 2; }
     .case-mockup { position: relative; overflow: hidden; aspect-ratio: 16 / 9; }
+    .case-mockup:focus-visible { outline-offset: -3px; }
     .case-mockup img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 
     .case-info { padding: 24px 28px; }
@@ -378,7 +385,8 @@
 
     /* ── FOOTER ── */
     footer { padding: 40px 0; }
-    footer .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    footer .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    @media (max-width: 534px) { footer .container { flex-direction: column; align-items: flex-start; gap: 12px; } }
     .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: .05em; display: inline-flex; align-items: center; min-height: 44px; }
     .footer-logo span { color: var(--accent); }
     .footer-copy { font-size: 13px; color: var(--muted); }
@@ -398,6 +406,7 @@
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
+    [tabindex="-1"]:focus-visible { outline: none; }
     @media (max-width: 768px) {
       section { padding: 64px 0; }
       .cta-section { padding: 80px 0; }
@@ -510,14 +519,14 @@
 <main id="main-content" tabindex="-1">
 
 <!-- ── HERO ── -->
-<section class="hero" id="home" aria-labelledby="heading-home">
+<section class="hero" id="home" aria-labelledby="heading-home" tabindex="-1">
   <div class="hero-deco hero-deco-1" aria-hidden="true"></div>
   <div class="hero-deco hero-deco-2" aria-hidden="true"></div>
-  <div class="hero-grid"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-eyebrow reveal d1">Дизайн и разработка</div>
     <h1 class="hero-h1 reveal d2" id="heading-home">
-      Ваш проект&nbsp;—<br><span class="accent-line">готов.</span>
+      Ваш проект&nbsp;— <br><span class="accent-line">готов.</span>
     </h1>
     <div class="hero-bottom reveal d3">
       <div class="hero-desc">
@@ -736,7 +745,7 @@
   <div class="container">
     <div class="section-label reveal">Готов к работе</div>
     <h2 class="cta-h reveal" id="heading-contact">
-      Обсудим<br>ваш <span>проект?</span>
+      Обсудим <br>ваш <span>проект?</span>
     </h2>
     <p class="cta-sub reveal">Напишите — отвечу быстро, расскажу стоимость и сроки без воды.</p>
     <a href="https://t.me/xywtada" target="_blank" rel="noopener noreferrer" class="btn-primary reveal" aria-label="Написать в Telegram (откроется в новой вкладке)">
@@ -775,12 +784,10 @@
   }, { threshold: 0.12 });
   reveals.forEach(el => io.observe(el));
 
-  const _reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
-    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
-      if (_reducedMotion) { el.classList.add('visible'); }
-      else { setTimeout(() => el.classList.add('visible'), 100 + i * 150); }
-    });
+  // Animate hero immediately — CSS transition-delays on .d1/.d2/.d3 handle stagger.
+  // Waiting for fonts.ready causes a blank hero for 1-2s on slow connections.
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
   });
 
   const _navLinks = [...document.querySelectorAll('.nav-links a')];
@@ -804,7 +811,7 @@
   const navEl = document.getElementById('nav');
   if (navToggle) {
     const navMobileEl = document.getElementById('nav-mobile');
-    const isMobileNav = () => window.matchMedia('(max-width: 480px)').matches;
+    const isMobileNav = () => window.matchMedia('(max-width: 640px)').matches;
     const closeMenu = () => {
       navEl.classList.remove('nav-open');
       navToggle.setAttribute('aria-expanded', 'false');
@@ -822,15 +829,16 @@
       const open = navEl.classList.toggle('nav-open');
       navToggle.setAttribute('aria-expanded', open);
       navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
-      if (open) { navMobileEl.setAttribute('aria-hidden', 'false'); navMobileEl.removeAttribute('inert'); }
+      if (open) { navMobileEl.setAttribute('aria-hidden', 'false'); navMobileEl.removeAttribute('inert'); navMobileEl.querySelector('a')?.focus(); }
       else { navMobileEl.setAttribute('aria-hidden', 'true'); navMobileEl.setAttribute('inert', ''); }
     });
     document.querySelectorAll('#nav-mobile a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('click', e => { if (!navEl.contains(e.target)) closeMenu(); });
+    navEl.addEventListener('focusout', e => { if (navEl.classList.contains('nav-open') && !navEl.contains(e.relatedTarget)) closeMenu(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && navEl.classList.contains('nav-open')) { closeMenu(); navToggle.focus(); } });
     window.addEventListener('scroll', () => { if (navEl.classList.contains('nav-open')) closeMenu(); }, { passive: true });
     const syncNavAria = () => {
-      const isMobile = window.matchMedia('(max-width: 480px)').matches;
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
       const isOpen = navEl.classList.contains('nav-open');
       const hidden = isMobile && !isOpen;
       navMobileEl.setAttribute('aria-hidden', hidden ? 'true' : 'false');
@@ -869,6 +877,7 @@
   lb.setAttribute('aria-label', 'Просмотр изображения');
   lb.setAttribute('aria-describedby', 'lb-img-desc');
   lb.setAttribute('aria-hidden', 'true');
+  lb.setAttribute('inert', '');
   const lbImg = document.createElement('img');
   lbImg.id = 'lb-img-desc';
   lbImg.className = 'lightbox-img';
@@ -889,6 +898,7 @@
     lbImg.alt = alt || '';
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
+    lb.removeAttribute('inert');
     _lbScrollY = window.scrollY || document.scrollingElement.scrollTop;
     document.body.style.position = 'fixed';
     document.body.style.top = `-${_lbScrollY}px`;
@@ -898,10 +908,11 @@
   function closeLightbox() {
     lb.classList.remove('open');
     lb.setAttribute('aria-hidden', 'true');
+    lb.setAttribute('inert', '');
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
-    window.scrollTo(0, _lbScrollY);
+    window.scrollTo({ top: _lbScrollY, behavior: 'instant' });
     if (document.scrollingElement) document.scrollingElement.scrollTop = _lbScrollY;
     if (_lbTrigger) { _lbTrigger.focus(); _lbTrigger = null; }
   }
