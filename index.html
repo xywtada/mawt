@@ -834,7 +834,7 @@
     });
     document.querySelectorAll('#nav-mobile a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('click', e => { if (!navEl.contains(e.target)) closeMenu(); });
-    navEl.addEventListener('focusout', e => { if (navEl.classList.contains('nav-open') && !navEl.contains(e.relatedTarget)) closeMenu(); });
+    navEl.addEventListener('focusout', e => { if (e.relatedTarget && navEl.classList.contains('nav-open') && !navEl.contains(e.relatedTarget)) closeMenu(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && navEl.classList.contains('nav-open')) { closeMenu(); navToggle.focus(); } });
     window.addEventListener('scroll', () => { if (navEl.classList.contains('nav-open')) closeMenu(); }, { passive: true });
     const syncNavAria = () => {
