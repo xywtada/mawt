@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
-  <noscript><style>.reveal { opacity: 1 !important; transform: none !important; transition: none !important; }</style></noscript>
+  <noscript><style>.reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; } .hero-h1 .line-inner { transform: none !important; }</style></noscript>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -92,8 +92,8 @@
 
     .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
     .syne { font-family: 'Syne', sans-serif; font-weight: 800; }
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .65s ease-out, transform .65s ease-out; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal { opacity: 0; transform: translateY(32px) scale(.98); filter: blur(8px); transition: opacity .7s ease-out, transform .7s cubic-bezier(.2,.7,.2,1), filter .7s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 
     /* ── NAV ── */
     nav {
@@ -184,11 +184,21 @@
       top: -20%; right: -8%;
       width: 750px; height: 750px;
       background: radial-gradient(circle, rgba(196,168,130,.06) 0%, transparent 65%);
+      animation: hero-drift-1 16s ease-in-out infinite;
     }
     .hero-deco-2 {
       bottom: -10%; left: -8%;
       width: 520px; height: 520px;
       background: radial-gradient(circle, rgba(196,168,130,.03) 0%, transparent 65%);
+      animation: hero-drift-2 21s ease-in-out infinite;
+    }
+    @keyframes hero-drift-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(-38px, 32px) scale(1.08); }
+    }
+    @keyframes hero-drift-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(34px, -30px) scale(1.1); }
     }
     .hero-grid {
       position: absolute; inset: 0; pointer-events: none;
@@ -210,7 +220,24 @@
       font-size: clamp(72px, 13vw, 160px);
       line-height: .92; letter-spacing: -.04em; margin-bottom: 40px;
     }
-    .hero-h1 .accent-line { color: var(--accent); }
+    .hero-h1 .accent-line {
+      color: var(--accent);
+      background: linear-gradient(100deg, var(--accent) 0%, var(--accent) 38%, #f1e2c9 50%, var(--accent) 62%, var(--accent) 100%);
+      background-size: 250% 100%;
+      background-position: 150% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: accent-shine 5.5s ease-in-out 1.2s infinite;
+    }
+    @keyframes accent-shine {
+      0%, 32%  { background-position: 150% 0; }
+      62%, 100%{ background-position: -50% 0; }
+    }
+    .hero-h1 .line-mask { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+    .hero-h1 .line-inner { display: block; transform: translateY(115%); transition: transform .85s cubic-bezier(.2,.75,.2,1); will-change: transform; }
+    .hero-h1.visible .line-inner { transform: translateY(0); }
+    .hero-h1.visible .line-2 { transition-delay: .12s; }
     .hero-bottom { display: flex; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
     .hero-desc { max-width: 420px; }
     .hero-desc p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
@@ -429,7 +456,9 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: 0.01ms !important; transition-delay: 0ms !important; animation-duration: 0.01ms !important; animation-delay: 0ms !important; }
-      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+      .hero-h1 .line-inner { transform: none !important; }
+      .hero-h1 .accent-line { -webkit-text-fill-color: var(--accent); }
       .bento-card:hover, .case-card:hover, .btn-primary:hover, .btn-secondary:hover,
       .btn-primary:active, .btn-secondary:active { transform: none; }
     }
@@ -484,7 +513,9 @@
       :root { --bg: #fff; --surface: #f5f5f5; --border: #ccc; --text: #111; --muted: #555; --accent: #7a6140; --accent-d: #5e4a2e; }
       body { background: #fff; color: #111; }
       .skip-nav, nav, .lightbox, .hero-deco, .cta-ring, .bento-card::after, .case-mockup::before, .case-mockup::after { display: none !important; }
-      .reveal { opacity: 1 !important; transform: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+      .hero-h1 .line-inner { transform: none !important; }
+      .hero-h1 .accent-line { -webkit-text-fill-color: var(--accent); background: none; }
       section { page-break-inside: avoid; }
       #contact { page-break-before: always; }
       .bento-card { border: 1px solid #ccc; break-inside: avoid; }
@@ -525,8 +556,9 @@
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-eyebrow reveal d1">Дизайн и разработка</div>
-    <h1 class="hero-h1 reveal d2" id="heading-home">
-      Ваш проект&nbsp;— <br><span class="accent-line">готов.</span>
+    <h1 class="hero-h1" id="heading-home">
+      <span class="line-mask"><span class="line-inner">Ваш проект&nbsp;—</span></span>
+      <span class="line-mask"><span class="line-inner line-2 accent-line">готов.</span></span>
     </h1>
     <div class="hero-bottom reveal d3">
       <div class="hero-desc">
@@ -787,7 +819,7 @@
   // Animate hero immediately — CSS transition-delays on .d1/.d2/.d3 handle stagger.
   // Waiting for fonts.ready causes a blank hero for 1-2s on slow connections.
   requestAnimationFrame(() => {
-    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.hero .reveal, .hero-h1').forEach(el => el.classList.add('visible'));
   });
 
   const _navLinks = [...document.querySelectorAll('.nav-links a')];
@@ -934,6 +966,23 @@
     if (e.key === 'Escape') { closeLightbox(); return; }
     if (e.key === 'Tab') { e.preventDefault(); lbClose.focus(); }
   });
+
+  // Magnetic primary buttons (desktop pointer only, respects reduced-motion)
+  const _finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const _reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (_finePointer && !_reduceMotion) {
+    const clamp = (v, m) => Math.max(-m, Math.min(m, v));
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+      btn.style.transition = 'background .2s, transform .25s cubic-bezier(.2,.7,.2,1)';
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = clamp((e.clientX - (r.left + r.width / 2)) * 0.3, 9);
+        const y = clamp((e.clientY - (r.top + r.height / 2)) * 0.4, 9);
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
 </script>
 </body>
 </html>
